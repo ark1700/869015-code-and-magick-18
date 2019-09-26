@@ -14,16 +14,20 @@ var getRandomFromArr = function (arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 };
 
-var wizards = [];
+var getRandomWizards = function () {
+  var wizardsArray = [];
+  for (var i = 0; i < WIZARD_NUMBER; i++) {
+    var randomWizard = {
+      name: getRandomFromArr(WIZARD_NAMES) + ' ' + getRandomFromArr(WIZARD_SURNAMES),
+      coatColor: getRandomFromArr(WIZARD_COATCOLORS),
+      eyesColor: getRandomFromArr(WIZARD_EYESCOLORS)
+    };
+    wizardsArray.push(randomWizard);
+  }
+  return wizardsArray;
+};
 
-for (var i = 0; i < WIZARD_NUMBER; i++) {
-  var randomWizard = {
-    name: getRandomFromArr(WIZARD_NAMES) + ' ' + getRandomFromArr(WIZARD_SURNAMES),
-    coatColor: getRandomFromArr(WIZARD_COATCOLORS),
-    eyesColor: getRandomFromArr(WIZARD_EYESCOLORS)
-  };
-  wizards.push(randomWizard);
-}
+var wizards = getRandomWizards();
 
 var similarListElement = userDialog.querySelector('.setup-similar-list');
 
@@ -42,7 +46,7 @@ var renderWizard = function (wizard) {
 };
 
 var fragment = document.createDocumentFragment();
-for (i = 0; i < wizards.length; i++) {
+for (var i = 0; i < wizards.length; i++) {
   fragment.appendChild(renderWizard(wizards[i]));
 }
 similarListElement.appendChild(fragment);
