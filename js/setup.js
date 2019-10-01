@@ -52,3 +52,130 @@ for (var i = 0; i < wizards.length; i++) {
 similarListElement.appendChild(fragment);
 
 userDialog.querySelector('.setup-similar').classList.remove('hidden');
+
+var ESC_KEYCODE = 27;
+var ENTER_KEYCODE = 13;
+
+var setup = document.querySelector('.setup');
+var setupOpen = document.querySelector('.setup-open');
+var setupClose = setup.querySelector('.setup-close');
+
+var onPopupEscPress = function (evt) {
+  if (evt.keyCode === ESC_KEYCODE && !(evt.target === userNameInput)) {
+    closePopup();
+  }
+};
+
+var openPopup = function () {
+  setup.classList.remove('hidden');
+  document.addEventListener('keydown', onPopupEscPress);
+  wizardCoat.addEventListener('click', nextWizardCoatColor);
+  wizardEyes.addEventListener('click', nextWizardEyesColor);
+  wizardFireball.addEventListener('click', nextWizardFireballColor);
+};
+
+var closePopup = function () {
+  setup.classList.add('hidden');
+  document.removeEventListener('keydown', onPopupEscPress);
+  wizardCoat.removeEventListener('click', nextWizardCoatColor);
+  wizardEyes.removeEventListener('click', nextWizardEyesColor);
+  wizardFireball.removeEventListener('click', nextWizardFireballColor);
+};
+
+setupOpen.addEventListener('click', openPopup);
+
+setupOpen.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
+    openPopup();
+  }
+});
+
+setupClose.addEventListener('click', closePopup);
+
+setupClose.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
+    closePopup();
+  }
+});
+
+var userNameInput = setup.querySelector('.setup-user-name');
+
+userNameInput.addEventListener('invalid', function () {
+  if (userNameInput.validity.tooShort) {
+    userNameInput.setCustomValidity('Имя должно состоять минимум из 2-х символов');
+  } else if (userNameInput.validity.tooLong) {
+    userNameInput.setCustomValidity('Имя не должно превышать 25-ти символов');
+  } else if (userNameInput.validity.valueMissing) {
+    userNameInput.setCustomValidity('Обязательное поле');
+  } else {
+    userNameInput.setCustomValidity('');
+  }
+});
+
+userNameInput.addEventListener('input', function (evt) {
+  var target = evt.target;
+  if (target.value.length < 2) {
+    target.setCustomValidity('Имя должно состоять минимум из 2-х символов');
+  } else {
+    target.setCustomValidity('');
+  }
+});
+
+
+var setupWizard = document.querySelector('.setup-wizard');
+var setupWizardForm = document.querySelector('.setup-wizard-form');
+var wizardCoat = setupWizard.querySelector('.wizard-coat');
+var wizardEyes = setupWizard.querySelector('.wizard-eyes');
+var wizardFireball = setupWizardForm.querySelector('.setup-fireball-wrap');
+var COAT_COLORS = [
+  'rgb(101, 137, 164)',
+  'rgb(241, 43, 107)',
+  'rgb(146, 100, 161)',
+  'rgb(56, 159, 117)',
+  'rgb(215, 210, 55)',
+  'rgb(0, 0, 0)'
+];
+var EYES_COLORS = [
+  'black',
+  'red',
+  'blue',
+  'yellow',
+  'green'
+];
+var FIREBALL_COLORS = [
+  '#ee4830',
+  '#30a8ee',
+  '#5ce6c0',
+  '#e848d5',
+  '#e6e848'
+];
+var currentCoatColorIndex = 0;
+var currentEyeColorIndex = 0;
+var currentFireballColorIndex = 0;
+
+var nextWizardCoatColor = function () {
+  currentCoatColorIndex = (currentCoatColorIndex + 1) % COAT_COLORS.length;
+  var nextColor = COAT_COLORS[currentCoatColorIndex];
+  wizardCoat.style.fill = nextColor;
+  setupWizardForm.querySelector('input[name="coat-color"]').value = nextColor;
+};
+
+var nextWizardEyesColor = function () {
+  currentEyeColorIndex = (currentEyeColorIndex + 1) % EYES_COLORS.length;
+  var nextColor = EYES_COLORS[currentEyeColorIndex];
+  wizardEyes.style.fill = nextColor;
+  setupWizardForm.querySelector('input[name="eyes-color"]').value = nextColor;
+};
+
+var nextWizardFireballColor = function () {
+  currentFireballColorIndex = (currentFireballColorIndex + 1) % FIREBALL_COLORS.length;
+  var nextColor = FIREBALL_COLORS[currentFireballColorIndex];
+  wizardFireball.style.background = nextColor;
+  setupWizardForm.querySelector('input[name="fireball-color"]').value = nextColor;
+};
+
+wizardCoat.addEventListener('click', nextWizardCoatColor);
+
+wizardEyes.addEventListener('click', nextWizardEyesColor);
+
+wizardFireball.addEventListener('click', nextWizardFireballColor);
