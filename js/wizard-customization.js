@@ -1,5 +1,7 @@
+'use strict';
+
 (function () {
-  //wizard customization
+  // wizard customization
 
   var setupWizard = document.querySelector('.setup-wizard');
   var setupWizardForm = document.querySelector('.setup-wizard-form');
@@ -60,14 +62,12 @@
 
   wizardFireball.addEventListener('click', nextWizardFireballColor);
 
-  window.wizardCustomization = (function () {
-    return {
-      wizardCoat,
-      wizardEyes,
-      wizardFireball,
-      nextWizardCoatColor,
-      nextWizardEyesColor,
-      nextWizardFireballColor
-    }
-  })();
+  window.wizardCustomization = {
+    wizardCoat: wizardCoat,
+    wizardEyes: wizardEyes,
+    wizardFireball: wizardFireball,
+    nextWizardCoatColor: nextWizardCoatColor,
+    nextWizardEyesColor: nextWizardEyesColor,
+    nextWizardFireballColor: nextWizardFireballColor
+  };
 })();

@@ -1,16 +1,14 @@
 // Файл setup.js
 'use strict';
 (function () {
-  //add popup events
+  // add popup events
 
   var setup = document.querySelector('.setup');
   var setupOpen = document.querySelector('.setup-open');
   var setupClose = setup.querySelector('.setup-close');
-  var ESC_KEYCODE = 27;
-  var ENTER_KEYCODE = 13;
 
   var onPopupEscPress = function (evt) {
-    if (evt.keyCode === ESC_KEYCODE && !(evt.target === userNameInput)) {
+    if (evt.code === 'Escape' && !(evt.target === userNameInput)) {
       closePopup();
     }
   };
@@ -34,7 +32,8 @@
   setupOpen.addEventListener('click', openPopup);
 
   setupOpen.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === ENTER_KEYCODE) {
+
+    if (evt.code === 'Enter') {
       openPopup();
     }
   });
@@ -42,12 +41,12 @@
   setupClose.addEventListener('click', closePopup);
 
   setupClose.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === ENTER_KEYCODE) {
+    if (evt.code === 'Enter') {
       closePopup();
     }
   });
 
-  //validation
+  // validation
 
   var userNameInput = setup.querySelector('.setup-user-name');
 
@@ -72,7 +71,7 @@
     }
   });
 
-  //drag dialog
+  // drag dialog
   var dialogHandler = setup.querySelector('.upload');
 
   dialogHandler.addEventListener('mousedown', function (evt) {
@@ -101,7 +100,6 @@
 
       setup.style.top = (setup.offsetTop - shift.y) + 'px';
       setup.style.left = (setup.offsetLeft - shift.x) + 'px';
-
     };
 
     var onMouseUp = function (upEvt) {
@@ -111,9 +109,9 @@
       document.removeEventListener('mouseup', onMouseUp);
 
       if (dragged) {
-        var onClickPreventDefault = function (evt) {
-          evt.preventDefault();
-          dialogHandler.removeEventListener('click', onClickPreventDefault)
+        var onClickPreventDefault = function (dragEvt) {
+          dragEvt.preventDefault();
+          dialogHandler.removeEventListener('click', onClickPreventDefault);
         };
         dialogHandler.addEventListener('click', onClickPreventDefault);
       }
