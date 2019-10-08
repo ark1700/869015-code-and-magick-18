@@ -24,11 +24,9 @@
     var fragment = document.createDocumentFragment();
     var wizardsNumber = 4;
     var wizardIndices = window.randomArrIndices(wizards, wizardsNumber);
-    var wizardIndex;
 
     for (var i = 0; i < 4; i++) {
-      wizardIndex = wizardIndices[i];
-      fragment.appendChild(renderWizard(wizards[wizardIndex]));
+      fragment.appendChild(renderWizard(wizards[wizardIndices[i]]));
     }
     similarListElement.appendChild(fragment);
   };
