@@ -9,9 +9,8 @@
       if (xhr.status === 200) {
         onSuccess(xhr.response);
         return;
-      } else {
-        onError('Статус ответа: ' + xhr.status + ' ' + xhr.statusText);
       }
+      onError('Статус ответа: ' + xhr.status + ' ' + xhr.statusText);
     });
     xhr.addEventListener('error', function () {
       onError('Произошла ошибка соединения');
