@@ -40,6 +40,7 @@
     var nextColor = COAT_COLORS[currentCoatColorIndex];
     wizardCoat.style.fill = nextColor;
     setupWizardForm.querySelector('input[name="coat-color"]').value = nextColor;
+    window.wizard.onChange(wizardEyes.style.fill, wizardCoat.style.fill);
   };
 
   var nextWizardEyesColor = function () {
@@ -47,6 +48,7 @@
     var nextColor = EYES_COLORS[currentEyeColorIndex];
     wizardEyes.style.fill = nextColor;
     setupWizardForm.querySelector('input[name="eyes-color"]').value = nextColor;
+    window.wizard.onChange(wizardEyes.style.fill, wizardCoat.style.fill);
   };
 
   var nextWizardFireballColor = function () {
@@ -62,12 +64,10 @@
 
   wizardFireball.addEventListener('click', nextWizardFireballColor);
 
-  window.wizardCustomization = {
-    wizardCoat: wizardCoat,
-    wizardEyes: wizardEyes,
-    wizardFireball: wizardFireball,
-    nextWizardCoatColor: nextWizardCoatColor,
-    nextWizardEyesColor: nextWizardEyesColor,
-    nextWizardFireballColor: nextWizardFireballColor
-  };
+  window.wizard.wizardCoat = wizardCoat;
+  window.wizard.wizardEyes = wizardEyes;
+  window.wizard.wizardFireball = wizardFireball;
+  window.wizard.nextWizardCoatColor = nextWizardCoatColor;
+  window.wizard.nextWizardEyesColor = nextWizardEyesColor;
+  window.wizard.nextWizardFireballColor = nextWizardFireballColor;
 })();

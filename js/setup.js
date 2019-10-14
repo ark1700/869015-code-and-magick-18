@@ -16,17 +16,17 @@
   var openPopup = function () {
     setup.classList.remove('hidden');
     document.addEventListener('keydown', onPopupEscPress);
-    window.wizardCustomization.wizardCoat.addEventListener('click', window.wizardCustomization.nextWizardCoatColor);
-    window.wizardCustomization.wizardEyes.addEventListener('click', window.wizardCustomization.nextWizardEyesColor);
-    window.wizardCustomization.wizardFireball.addEventListener('click', window.wizardCustomization.nextWizardFireballColor);
+    window.wizard.wizardCoat.addEventListener('click', window.wizard.nextWizardCoatColor);
+    window.wizard.wizardEyes.addEventListener('click', window.wizard.nextWizardEyesColor);
+    window.wizard.wizardFireball.addEventListener('click', window.wizard.nextWizardFireballColor);
   };
 
   var closePopup = function () {
     setup.classList.add('hidden');
     document.removeEventListener('keydown', onPopupEscPress);
-    window.wizardCustomization.wizardCoat.removeEventListener('click', window.wizardCustomization.nextWizardCoatColor);
-    window.wizardCustomization.wizardEyes.removeEventListener('click', window.wizardCustomization.nextWizardEyesColor);
-    window.wizardCustomization.wizardFireball.removeEventListener('click', window.wizardCustomization.nextWizardFireballColor);
+    window.wizard.wizardCoat.removeEventListener('click', window.wizard.nextWizardCoatColor);
+    window.wizard.wizardEyes.removeEventListener('click', window.wizard.nextWizardEyesColor);
+    window.wizard.wizardFireball.removeEventListener('click', window.wizard.nextWizardFireballColor);
   };
 
   setupOpen.addEventListener('click', openPopup);
