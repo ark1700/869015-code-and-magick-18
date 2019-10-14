@@ -1,7 +1,8 @@
 'use strict';
 (function () {
-  var coatColor;
-  var eyesColor;
+  var setupPlayer = document.querySelector('.setup-player');
+  var coatColor = setupPlayer.querySelector('.wizard-coat').style.fill;
+  var eyesColor = setupPlayer.querySelector('.wizard-eyes').style.fill;
   var wizards = [];
 
   var getRank = function (wizard) {
