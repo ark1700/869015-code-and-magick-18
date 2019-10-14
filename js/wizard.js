@@ -40,7 +40,7 @@
     var nextColor = COAT_COLORS[currentCoatColorIndex];
     wizardCoat.style.fill = nextColor;
     setupWizardForm.querySelector('input[name="coat-color"]').value = nextColor;
-    window.wizard.onCoatChange(nextColor);
+    window.wizard.onChange(wizardEyes.style.fill, wizardCoat.style.fill);
   };
 
   var nextWizardEyesColor = function () {
@@ -48,7 +48,7 @@
     var nextColor = EYES_COLORS[currentEyeColorIndex];
     wizardEyes.style.fill = nextColor;
     setupWizardForm.querySelector('input[name="eyes-color"]').value = nextColor;
-    window.wizard.onEyesChange(nextColor);
+    window.wizard.onChange(wizardEyes.style.fill, wizardCoat.style.fill);
   };
 
   var nextWizardFireballColor = function () {

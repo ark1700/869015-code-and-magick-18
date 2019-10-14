@@ -29,13 +29,9 @@
       }));
   };
 
-  window.wizard.onEyesChange = window.debounce(function (color) {
-    eyesColor = color;
-    updateWizards();
-  });
-
-  window.wizard.onCoatChange = window.debounce(function (color) {
-    coatColor = color;
+  window.wizard.onChange = window.debounce(function (newEyesColor, newCoatColor) {
+    eyesColor = newEyesColor;
+    coatColor = newCoatColor;
     updateWizards();
   });
 
